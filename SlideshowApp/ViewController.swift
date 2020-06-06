@@ -26,6 +26,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var ImageView: UIImageView!
     
     @IBOutlet weak var playBtnLabel: UIButton!
+        
+    @IBOutlet weak var rewindBtn: UIButton!
+    
+    @IBOutlet weak var forwardBtn: UIButton!
     
     @IBAction func unwind(_ segue: UIStoryboardSegue){
         
@@ -63,6 +67,8 @@ class ViewController: UIViewController {
         if buttonFlag == false {
             sender.setTitle("停止", for: .normal)
             buttonFlag=true
+            rewindBtn.isEnabled = false
+            forwardBtn.isEnabled = false
             //timer start
             if self.timer == nil{
                 self.timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(countUp(_:)), userInfo: nil, repeats: true)
@@ -70,6 +76,9 @@ class ViewController: UIViewController {
         } else if buttonFlag == true {
             sender.setTitle("再生", for: .normal)
             buttonFlag=false
+            rewindBtn.isEnabled = true
+            forwardBtn.isEnabled = true
+
             if self.timer != nil{
                 self.timer_sec=0
                 self.timer.invalidate()
@@ -88,10 +97,25 @@ class ViewController: UIViewController {
     
     //  prepare
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+
+        //stop slideshow
+        playBtnLabel.setTitle("再生", for: .normal)
+        buttonFlag=false
+        rewindBtn.isEnabled = true
+        forwardBtn.isEnabled = true
+
+        if self.timer != nil{
+            self.timer_sec=0
+            self.timer.invalidate()
+            self.timer = nil
+        }
+        
         //segueから遷移先のSlideViewControllerを取得
         let slideViewController: SlideViewController = segue.destination as! SlideViewController
         
         slideViewController.sentName = imageName[count]
+        
+
 
     }
 

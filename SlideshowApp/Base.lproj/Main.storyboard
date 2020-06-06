@@ -67,7 +67,9 @@
                     </view>
                     <connections>
                         <outlet property="ImageView" destination="qMN-BJ-dfo" id="Dnf-SU-B7b"/>
+                        <outlet property="forwardBtn" destination="QMC-Vs-vea" id="GPr-ja-p7W"/>
                         <outlet property="playBtnLabel" destination="p4C-Ag-HPB" id="Kgg-x5-vEK"/>
+                        <outlet property="rewindBtn" destination="kRf-SJ-Z0v" id="vAy-ba-bcX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
